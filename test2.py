@@ -1,4 +1,12 @@
-counter=400000
-while(1):
-    counter=counter-1
-    print counter
+
+
+def sett(b):
+    b=5
+    return  b
+
+
+if __name__ == '__main__':
+    b=0
+    sett(b)
+
+    print b
