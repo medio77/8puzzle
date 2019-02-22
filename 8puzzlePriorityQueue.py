@@ -37,6 +37,19 @@ def move_board(board, movement):
         temp_board[i_temp][j_temp] = val_temp
     return temp_board
 
+def is_solvable(list):
+    linear_list = []
+    inversion_counter = 0
+    for i in list:
+        for j in i:
+            if j:
+                linear_list.append(j)
+    for i in range(len(linear_list)):
+        for j in range(i, 8):
+            if linear_list[i] > linear_list[j]:
+                inversion_counter = inversion_counter + 1
+    return inversion_counter%2==0
+
 
 def available_moves(board):
     avail = []
@@ -74,6 +87,7 @@ if __name__ == '__main__':
     queue.append(board)
     visited.append(board)
     while (queue):
+
         print len(queue)
         board = queue.pop()
         queue.append(board)
@@ -86,7 +100,7 @@ if __name__ == '__main__':
 
         for move in available_moves(board):
             child = move_board(board, move)
-            if child not in visited:
+            if child not in visited and is_solvable(child) :
                 queue.append(child)
                 visited.append(child)
 
